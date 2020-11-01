@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/j5y41lu33fw29i0y?svg=true)](https://ci.appveyor.com/project/BlackGad/ps-opencv-cpp-configuration)
+[![NuGet Badge](https://buildstats.info/nuget/PS.OpenCV.CPP.Configuration)](https://www.nuget.org/packages/NUnit/)
 # PS.OpenCV.CPP.Configuration
 Easy c++ projects configuration with OpenCV SDK
 
