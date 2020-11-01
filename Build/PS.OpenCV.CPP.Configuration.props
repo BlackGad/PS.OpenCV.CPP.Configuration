@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup Label="Open CV globals">
-        <OpenCV_SDK Condition="'$(OpenCV_SDK)'==''">$(opencv2SDK)</OpenCV_SDK>
-        <OpenCV_Platform_Override Condition=" '$(OpenCV_Platform_Override)' == '' ">x64</OpenCV_Platform_Override>
-        <OpenCV_VCVersion_Override Condition=" '$(OpenCV_VCVersion_Override)' == '' ">vc15</OpenCV_VCVersion_Override>
+    <PropertyGroup>
+        <OPENCV_DIR_INCLUDE>$(OPENCV_DIR)\..\..\include\</OPENCV_DIR_INCLUDE>
+        <OPENCV_DIR_LIB>$(OPENCV_DIR)\lib\</OPENCV_DIR_LIB>
+        <OPENCV_DIR_BIN>$(OPENCV_DIR)\bin\</OPENCV_DIR_BIN>
     </PropertyGroup>
     <ItemDefinitionGroup>
         <ClCompile>
-            <AdditionalIncludeDirectories>$(OpenCV_SDK)build\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>$(OPENCV_DIR_INCLUDE);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
         </ClCompile>
         <Link>
-            <AdditionalLibraryDirectories>$(OpenCV_SDK)build\$(OpenCV_Platform_Override)\$(OpenCV_VCVersion_Override)\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <AdditionalLibraryDirectories>$(OPENCV_DIR_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
         </Link>
     </ItemDefinitionGroup>
     <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
@@ -23,8 +23,10 @@
             <AdditionalDependencies>opencv_world450.lib;%(AdditionalDependencies)</AdditionalDependencies>
         </Link>
     </ItemDefinitionGroup>
-    <Target Name="OpenCV_SDK_Variable_Check" BeforeTargets="PrepareForBuild">
-        <Error Condition="'$(OpenCV_SDK' == ''" Text="'opencv2SDK' user/system global variable not set and 'OpenCV_SDK' was not specified in project before PS.OpenCV.CPP.Setup.props import." />
-        <Error Condition="!Exists('$(OpenCV_SDK)')" Text="Directory defined in 'opencv2SDK' user/system global variable not exist ($(OpenCV_SDK)). Make sure path is correct." />
+    <Target Name="OpenCV environment variables check" BeforeTargets="ClCompile">
+        <Error Condition="'$(OPENCV_DIR' == ''" Text="'OPENCV_DIR' user/system global variable not set and 'OPENCV_DIR' was not specified in project before PS.OpenCV.CPP.Configuration.props import." />
+        <Error Condition="!Exists('$(OPENCV_DIR_INCLUDE)')" Text="Sources include directory based on 'OPENCV_DIR' global environment variable '$(OPENCV_DIR_INCLUDE)' not exists. Make sure path is correct." />
+        <Error Condition="!Exists('$(OPENCV_DIR_LIB)')" Text="Additional static libraries directory based on 'OPENCV_DIR' global environment variable '$(OPENCV_DIR_LIB)' not exists. Make sure path is correct." />
+        <Error Condition="!Exists('$(OPENCV_DIR_BIN)')" Text="Additional dynamic libraries directory based on 'OPENCV_DIR' global environment variable '$(OPENCV_DIR_BIN)' not exists. Make sure path is correct." />
     </Target>
 </Project>
