@@ -5,7 +5,7 @@ Easy c++ projects configuration with OpenCV SDK
 
 # How to use
 1) Download SDK from https://opencv.org/releases/ 
-2) Do **Set the OpenCV environment variable and add it to the systems path** step from [**Installation in Windows**](https://docs.opencv.org/master/d3/d52/tutorial_windows_install.html) tutorial.
+2) Do **'Set the OpenCV environment variable and add it to the systems path'** step from [**Installation in Windows**](https://docs.opencv.org/master/d3/d52/tutorial_windows_install.html#tutorial_windows_install_path) tutorial.
 3) System may require reboot to apply this variable (or may not)
 4) Install this package to your c++ project
 
