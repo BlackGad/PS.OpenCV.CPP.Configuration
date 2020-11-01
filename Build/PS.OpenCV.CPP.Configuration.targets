@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="Copy Native OpenCV references" AfterTargets="AfterBuild">
+        <PropertyGroup>
+            <OpenCV_SourceFolder_Override Condition=" '$(OpenCV_SourceFolder_Override)' == '' ">build\$(OpenCV_Platform_Override)\$(OpenCV_VCVersion_Override)\bin\</OpenCV_SourceFolder_Override>
+            <OpenCV_TargetFolder_Override Condition=" '$(OpenCV_TargetFolder_Override)' == '' " />
+        </PropertyGroup>
+        <ItemGroup Condition="'$(Configuration)'=='Debug'">
+            <OpenCV_SourceFiles Include="$(OpenCV_SDK)$(OpenCV_SourceFolder_Override)opencv_videoio_msmf450_64d.dll" />
+            <OpenCV_SourceFiles Include="$(OpenCV_SDK)$(OpenCV_SourceFolder_Override)opencv_world450d.dll" />
+            <OpenCV_SourceFiles Include="$(OpenCV_SDK)$(OpenCV_SourceFolder_Override)opencv_videoio_ffmpeg450_64.dll" />
+        </ItemGroup>
+        <ItemGroup Condition="'$(Configuration)'=='Release'">
+            <OpenCV_SourceFiles Include="$(OpenCV_SDK)$(OpenCV_SourceFolder_Override)opencv_videoio_msmf450_64.dll" />
+            <OpenCV_SourceFiles Include="$(OpenCV_SDK)$(OpenCV_SourceFolder_Override)opencv_world450.dll" />
+            <OpenCV_SourceFiles Include="$(OpenCV_SDK)$(OpenCV_SourceFolder_Override)opencv_videoio_ffmpeg450_64.dll" />
+        </ItemGroup>
+        <Message Text="Target directory: $(OpenCV_TargetFolder_Override)" />
+        <Copy SourceFiles="@(OpenCV_SourceFiles)" DestinationFiles="@(OpenCV_SourceFiles->'$(TargetDir)$(OpenCV_TargetFolder_Override)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    </Target>
+</Project>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>PS.OpenCV.CPP.Configuration</id>
+    <version>$version$</version>
+    <authors>Volodymyr Shkolka</authors>
+    <owners>Volodymyr Shkolka</owners>
+    <projectUrl>https://github.com/BlackGad/PS.OpenCV.CPP.Configuration</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Easy C++ projects configuration with OpenCV SDK</description>
+    <license type="expression">MIT</license>
+    <tags>PS OpenCV Computer Vision Image Processing C++ configuration</tags>
+  </metadata>
+  <files>
+    <file src="Build\PS.OpenCV.CPP.Configuration.props" target="build" />
+    <file src="Build\PS.OpenCV.CPP.Configuration.targets" target="build" />
+    <file src="README.md" target="" />
+  </files>
+</package>
